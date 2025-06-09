@@ -25,6 +25,7 @@ jobs:
   build-deploy:
     name: Build & Deploy
     runs-on: ubuntu-latest
+    needs: test-before-deploy
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
