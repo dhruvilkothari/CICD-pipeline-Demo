@@ -39,6 +39,9 @@ jobs:
       - name: Unit test
         run: mvn -B test --file pom.xml
 
+      - name: Run tests with coverage
+        run: mvn clean test jacoco:report
+
       - name: Build
         run: mvn clean package -B
 

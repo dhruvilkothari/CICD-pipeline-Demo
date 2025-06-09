@@ -10,9 +10,6 @@ public class CalculatorServiceTest {
     public static void init() {
         calculatorService = new CalculatorService();
     }
-
-
-
     @Test
     public void testAdd() {
 
@@ -57,5 +54,17 @@ public class CalculatorServiceTest {
     @Test
     public void testSqrt() {
         Assertions.assertEquals(4, calculatorService.sqrt(16));
+    }
+    @Test
+    public void testFactorialNegative() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> calculatorService.factorial(-5));
+    }
+    @Test
+    public void testSqrtNegative() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> calculatorService.sqrt(-9));
+    }
+    @Test
+    public void testDivideByZero() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> calculatorService.divide(6, 0));
     }
 }
