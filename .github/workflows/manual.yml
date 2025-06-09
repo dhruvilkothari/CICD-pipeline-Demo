@@ -20,6 +20,12 @@ jobs:
 
       - name: Unit test
         run: mvn -B test --file pom.xml
+
+      - name: Upload JAR
+        uses: actions/upload-artifact@v4
+        with:
+            name: spring-boot-app
+            path: target/*.jar
   build-deploy:
     name: Build & Deploy
     runs-on: ubuntu-latest
