@@ -23,3 +23,11 @@ jobs:
 
       - name: Build
         run: mvn clean package -B
+
+      - name: Create Docker Image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: false
+          dockerfile: Dockerfile
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/$(date +%Y-%m-%d)-spring-app:latest
