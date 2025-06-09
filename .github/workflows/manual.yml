@@ -21,11 +21,7 @@ jobs:
       - name: Unit test
         run: mvn -B test --file pom.xml
 
-      - name: Upload JAR
-        uses: actions/upload-artifact@v4
-        with:
-            name: spring-boot-app
-            path: target/*.jar
+
   build-deploy:
     name: Build & Deploy
     runs-on: ubuntu-latest
@@ -61,4 +57,9 @@ jobs:
       - name: Push to Docker Hub
         run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/${{ steps.vars.outputs.tag }}:latest
 
+      - name: Upload JAR
+        uses: actions/upload-artifact@v4
+        with:
+          name: spring-boot-app
+          path: target/*.jar
 
