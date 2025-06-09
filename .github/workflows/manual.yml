@@ -24,10 +24,14 @@ jobs:
       - name: Build
         run: mvn clean package -B
 
+      - name: Set image tag
+        id: vars
+        run: echo "tag=$(date +%Y-%m-%d)-spring-app" >> "$GITHUB_OUTPUT"
+
       - name: Create Docker Image
         uses: docker/build-push-action@v4
         with:
           context: .
           push: false
           dockerfile: Dockerfile
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/$(date +%Y-%m-%d)-spring-app:latest
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ steps.vars.outputs.tag }}:latest
